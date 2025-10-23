@@ -23,6 +23,11 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    public List<Book> getBooksByIds(List<Long> bookIds) {
+        return bookRepository.findAllById(bookIds);
+    }
+
+    @Override
     public Book getBookById(Long id) {
         Book book = bookRepository.findById(id).orElseThrow(
                 ()->new EntityNotFoundException("Book with id: "+id+" not found!")

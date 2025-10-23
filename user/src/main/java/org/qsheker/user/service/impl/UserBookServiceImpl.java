@@ -38,4 +38,9 @@ public class UserBookServiceImpl implements UserBookService {
                 ));
         userBookRepository.delete(userBook);
     }
+
+    @Override
+    public List<UserBook> getUsersBookById(Long id) {
+        return userBookRepository.findAllByUserId(id);
+    }
 }

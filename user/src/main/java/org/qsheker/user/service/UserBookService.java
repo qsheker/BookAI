@@ -13,4 +13,6 @@ public interface UserBookService {
 
     void delete(Long userId, Long bookId);
 
+    List<UserBook> getUsersBookById(Long id);
+
 }

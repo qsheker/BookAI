@@ -27,8 +27,15 @@ public class UserBookController {
     public List<UserBookResponseDto> getAllUserBooks() {
         return userBookService.findAll().stream()
                 .map(userBook -> userBookResponseMapper.toDto(userBook))
-                .toList()
-                ;
+                .toList();
+    }
+
+    @GetMapping("{userId}")
+    public List<UserBookResponseDto> getAllUsersBookByUserId(@PathVariable("userId") Long id){
+        return userBookService.getUsersBookById(id)
+                .stream()
+                .map(userBook -> userBookResponseMapper.toDto(userBook))
+                .toList();
     }
 
     @PostMapping
@@ -38,11 +45,11 @@ public class UserBookController {
     }
 
     @DeleteMapping
-    public ResponseEntity<String> deleteUserBook(
+    public String deleteUserBook(
             @RequestParam Long userId,
             @RequestParam Long bookId
     ) {
         userBookService.delete(userId, bookId);
-        return ResponseEntity.ok("UserBook relation deleted successfully");
+        return "UserBook relation deleted successfully";
     }
 }

@@ -1,10 +1,10 @@
 spring:
   application:
-    name: user
+    name: user-service
   datasource:
-    url: ${SPRING_DATASOURCE_URL}
-    username: ${SPRING_DATASOURCE_USERNAME}
-    password: ${SPRING_DATASOURCE_PASSWORD}
+    url: jdbc:postgresql://localhost:5432/user
+    username: qsheker
+    password: 2205
   jpa:
     hibernate:
       ddl-auto: create
@@ -15,4 +15,12 @@ spring:
     show-sql: true
 
 server:
-  port: ${SERVER_PORT}
+  port: 8081
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+    fetch-registry: true
+    register-with-eureka: true
+    enabled: true

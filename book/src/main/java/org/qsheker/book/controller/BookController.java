@@ -67,4 +67,10 @@ public class BookController {
     public void deleteBook(@PathVariable Long id) {
         bookService.delete(id);
     }
+    @GetMapping ("/batch")
+    public List<BookResponseDto> getBookByBatch(@RequestParam List<Long> ids){
+        return bookService.getBooksByIds(ids).stream().
+                map(book -> bookResponseMapper.toDto(book))
+                .toList();
+    }
 }
